@@ -19,7 +19,7 @@ final class ChattStore {
     private(set) var chatts = [Chatt]()
     private let nFields = Mirror(reflecting: Chatt()).children.count-1
 
-    private let serverUrl = "https://mada.eecs.umich.edu/"
+    private let serverUrl = "https://3.145.178.167"
     func getChatts() {
             // only one outstanding retrieval
             synchronized.sync {
