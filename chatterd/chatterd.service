@@ -1,0 +1,21 @@
+[Unit]
+Description=EECS441 chatterd
+Requires=postgresql.service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=1
+User=root
+Group=www-data
+WorkingDirectory=/home/ubuntu/441/chatterd
+
+
+
+
+ExecStart=/home/ubuntu/441/chatterd/venv/bin/granian --host 0.0.0.0 --port 443 --interface asgi --ssl-certificate /home/ubuntu/441/chatterd.crt --ssl-keyfile /home/ubuntu/441/chatterd.key --access-log --respawn-failed-workers --respawn-interval 1.0 --workers 3 main:server
+
+[Install]
+WantedBy=multi-user.target
