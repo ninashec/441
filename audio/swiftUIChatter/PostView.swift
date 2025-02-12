@@ -38,7 +38,7 @@ struct PostView: View {
                         .onTapGesture {
                             messageInFocus.toggle()
                         }
-            Spacer().frame(maxHeight: .infinity)
+                Spacer().frame(maxHeight: .infinity)
             
         }
     }
