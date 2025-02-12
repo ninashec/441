@@ -13,7 +13,9 @@ async def lifespan(server):
 
 routes = [
     Route('/getchatts/', handlers.getchatts, methods=['GET']),
-    Route('/postchatt/', handlers.postchatt, methods=['POST']),]
+    Route('/postchatt/', handlers.postchatt, methods=['POST']),
     Route('/getaudio/', handlers.getaudio, methods=['GET']),
     Route('/postaudio/', handlers.postaudio, methods=['POST']),
+]
+
 server = Starlette(routes=routes, lifespan=lifespan)
