@@ -29,7 +29,7 @@ async def getaudio(request):
     try:
         async with main.server.pool.connection() as connection:
             async with connection.cursor() as cursor:
-                await cursor.execute('SELECT username, message, id, time, audio  FROM chatts ORDER BY time DESC;')
+                await cursor.execute('SELECT username, message, id, time, audio FROM chatts ORDER BY time DESC;')
                 return JSONResponse(jsonable_encoder(await cursor.fetchall()))
     except Exception as err:
         print(f'{err=}')
@@ -76,4 +76,3 @@ async def postaudio(request):
     except Exception as err:
         print(f'{err=}')
         return JSONResponse(f'{type(err).__name__}: {str(err)}', status_code = 500)
-
