@@ -17,6 +17,7 @@ struct swiftUIChatterApp: App {
             NavigationStack {
                             MainView()
                         }
+                        .environment(AudioPlayer())
 
         }
     }

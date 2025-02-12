@@ -29,7 +29,7 @@ final class ChattStore {
                 self.isRetrieving = true
             }
 
-            guard let apiUrl = URL(string: "\(serverUrl)getchatts/") else {
+            guard let apiUrl = URL(string: "\(serverUrl)getaudio/") else {
                 print("getChatts: Bad URL")
                 return
             }
@@ -66,8 +66,11 @@ final class ChattStore {
                                                     message: chattEntry[1],
                                                      id: UUID(uuidString: chattEntry[2] ?? ""),
                                                      timestamp: chattEntry[3],
-                                                     altRow: idx % 2 == 0))
+                                                 altRow: idx % 2 == 0,
+                                                    audio: chattEntry[4]))
                             idx += 1
+                                
+                            
                         } else {
                             print("getChatts: Received unexpected number of fields: \(chattEntry.count) instead of \(self.nFields).")
                         }
@@ -78,13 +81,16 @@ final class ChattStore {
         }
     func postChatt(_ chatt: Chatt, completion: @escaping () -> ()) {
             let jsonObj = ["username": chatt.username,
-                           "message": chatt.message]
+                           "message": chatt.message,
+                           "audio": chatt.audio
+            
+            ]
             guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObj) else {
                 print("postChatt: jsonData serialization error")
                 return
             }
                     
-            guard let apiUrl = URL(string: "\(serverUrl)postchatt/") else {
+            guard let apiUrl = URL(string: "\(serverUrl)postaudio/") else {
                 print("postChatt: Bad URL")
                 return
             }
